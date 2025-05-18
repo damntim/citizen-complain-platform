@@ -1,18 +1,18 @@
 <?php
-// enhanced_device_checker.php - Checks device status
 
-// Include configuration file
+
+
 require_once 'config.php';
 
-// Define the API endpoints
+
 define('PUSHBULLET_API_URL', 'https://api.pushbullet.com/v2');
 define('PUSHBULLET_DEVICES_ENDPOINT', PUSHBULLET_API_URL . '/devices');
 
-// Use credentials from config file
+
 $api_key = PUSHBULLET_API_KEY;
 $device_id = PUSHBULLET_DEVICE_ID;
 
-// Function to check device status
+
 function checkDeviceStatus($api_key, $device_id) {
     $ch = curl_init(PUSHBULLET_DEVICES_ENDPOINT);
     curl_setopt_array($ch, [
@@ -34,7 +34,7 @@ function checkDeviceStatus($api_key, $device_id) {
         'raw_response' => null
     ];
 
-    // Check for cURL errors
+    
     if (curl_errno($ch)) {
         $result['status'] = 'error';
         $result['message'] = 'Connection error: ' . curl_error($ch);
@@ -44,7 +44,7 @@ function checkDeviceStatus($api_key, $device_id) {
 
     curl_close($ch);
 
-    // Process API response
+    
     if ($http_code !== 200) {
         $result['status'] = 'error';
         $result['message'] = 'API error (HTTP ' . $http_code . ')';
@@ -52,7 +52,7 @@ function checkDeviceStatus($api_key, $device_id) {
         return $result;
     }
 
-    // Parse the response
+    
     $devices_data = json_decode($response, true);
     $result['raw_response'] = $devices_data;
     
@@ -62,7 +62,7 @@ function checkDeviceStatus($api_key, $device_id) {
         return $result;
     }
 
-    // Look for the specified device
+    
     $device_found = false;
     foreach ($devices_data['devices'] as $device) {
         if ($device['iden'] === $device_id) {
@@ -78,7 +78,7 @@ function checkDeviceStatus($api_key, $device_id) {
                 'has_sms' => isset($device['has_sms']) ? ($device['has_sms'] ? 'Yes' : 'No') : 'Unknown'
             ];
             
-            // Determine device status
+            
             if (isset($device['active']) && $device['active'] && 
                 isset($device['pushable']) && $device['pushable']) {
                 $result['status'] = 'online';
@@ -87,7 +87,7 @@ function checkDeviceStatus($api_key, $device_id) {
                 $result['status'] = 'offline';
                 $result['message'] = 'Device is offline or not ready to send messages';
                 
-                // Provide more specific reason
+                
                 if (isset($device['active']) && !$device['active']) {
                     $result['message'] .= ' (Device is inactive)';
                 }
@@ -107,7 +107,7 @@ function checkDeviceStatus($api_key, $device_id) {
     return $result;
 }
 
-// Helper function to format time difference in a human-readable format
+
 function human_time_diff($timestamp) {
     $diff = time() - $timestamp;
     
@@ -122,14 +122,14 @@ function human_time_diff($timestamp) {
     }
 }
 
-// Process API request mode
+
 if (isset($_GET['api']) && $_GET['api'] == 1) {
     header('Content-Type: application/json');
     echo json_encode(checkDeviceStatus($api_key, $device_id));
     exit;
 }
 
-// Get device status for UI display
+
 $device_status = checkDeviceStatus($api_key, $device_id);
 ?>
 
@@ -224,27 +224,27 @@ $device_status = checkDeviceStatus($api_key, $device_id);
         </div>
         
         <?php
-        // Process form submission
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['phone_number']) && isset($_POST['message'])) {
             $phone_number = trim($_POST['phone_number']);
             $message = trim($_POST['message']);
             
             try {
-                // Include the PushbulletSMS class
+                
                 require_once '../pushbullet_sms.php';
                 
-                // Initialize PushbulletSMS
+                
                 $pushbullet = new PushbulletSMS($api_key, $device_id);
                 
-                // Check if device is ready
+                
                 if (!$pushbullet->isDeviceReady()) {
                     throw new Exception("Device is not online or not connected to the internet. Please call 0785498054 to start the app.");
                 }
                 
-                // Send the test message
+                
                 $response = $pushbullet->sendSMS($phone_number, $message);
                 
-                // Display success message
+                
                 echo '<div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6" role="alert">
                     <p class="font-bold">Success!</p>
                     <p>Test message sent successfully!</p>
@@ -253,7 +253,7 @@ $device_status = checkDeviceStatus($api_key, $device_id);
                 </div>';
                 
             } catch (Exception $e) {
-                // Display error message
+                
                 echo '<div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
                     <p class="font-bold">Error!</p>
                     <p>' . $e->getMessage() . '</p>

@@ -1,22 +1,22 @@
 <?php
 require_once "../db_setup.php";
 
-// Start session if not already started
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Initialize variables
+
 $showForm = false;
 $errorMessage = "";
 $successMessage = "";
 $requestData = null;
 
-// Check if code is provided in URL
+
 if (isset($_GET['code']) && !empty($_GET['code'])) {
     $code = $_GET['code'];
     
-    // Verify the code exists and is valid
+    
     $stmt = $conn->prepare("SELECT * FROM new_account_request WHERE pass_code = ? AND used = 0");
     $stmt->bind_param("s", $code);
     $stmt->execute();
@@ -24,11 +24,11 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
     $requestData = $result->fetch_assoc();
     
     if ($requestData) {
-        // Check if the request has expired (24 hours)
+        
         $createdTime = strtotime($requestData['created_at']);
         $currentTime = time();
         $timeDiff = $currentTime - $createdTime;
-        $hoursDiff = $timeDiff / 3600; // Convert seconds to hours
+        $hoursDiff = $timeDiff / 3600; 
         
         if ($hoursDiff <= 24) {
             $showForm = true;
@@ -42,16 +42,16 @@ if (isset($_GET['code']) && !empty($_GET['code'])) {
     $errorMessage = "No invitation code provided. Please use the link from your invitation email.";
 }
 
-// Process form submission
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']) && $showForm) {
-    // Validate form inputs
+    
     $fullname = trim($_POST['fullname']);
     $email = trim($_POST['email']);
     $phone = trim($_POST['phone']);
     $password = trim($_POST['password']);
     $confirmPassword = trim($_POST['confirm_password']);
     
-    // Basic validation
+    
     if (empty($fullname) || empty($email) || empty($password) || empty($confirmPassword)) {
         $errorMessage = "All fields are required.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -61,22 +61,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']) && $showFo
     } elseif (strlen($password) < 8) {
         $errorMessage = "Password must be at least 8 characters long.";
     } else {
-        // Check if the email matches the invitation
+        
         if ($email !== $requestData['email']) {
             $errorMessage = "The email address does not match the invitation.";
         } else {
-            // Process profile image upload
+            
             $profile_image = null;
             $upload_dir = "../uploads/profiles/";
             
-            // Create directory if it doesn't exist
+            
             if (!file_exists($upload_dir)) {
                 mkdir($upload_dir, 0777, true);
             }
             
             if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == 0) {
                 $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
-                $max_size = 5 * 1024 * 1024; // 5MB
+                $max_size = 5 * 1024 * 1024; 
                 
                 if (!in_array($_FILES['profile_image']['type'], $allowed_types)) {
                     $errorMessage = "Only JPG, PNG, and GIF images are allowed.";
@@ -95,38 +95,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']) && $showFo
             }
             
             if (empty($errorMessage)) {
-                // Start transaction
+                
                 $conn->begin_transaction();
                 
                 try {
-                    // Hash the password
+                    
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                     
-                    // Insert new admin
+                    
                     $stmt = $conn->prepare("INSERT INTO admins (fullname, email, phone, password, profile_image, status) VALUES (?, ?, ?, ?, ?, 'approved')");
                     $stmt->bind_param("sssss", $fullname, $email, $phone, $hashedPassword, $profile_image);
                     $stmt->execute();
                     
-                    // Mark the invitation as used
+                    
                     $stmt = $conn->prepare("UPDATE new_account_request SET used = 1 WHERE pass_code = ?");
                     $stmt->bind_param("s", $code);
                     $stmt->execute();
                     
-                    // Commit transaction
+                    
                     $conn->commit();
                     
                     $successMessage = "Your account has been created successfully. You can now log in.";
                     $showForm = false;
                 } catch (Exception $e) {
-                    // Rollback transaction on error
+                    
                     $conn->rollback();
                     
-                    // Delete uploaded image if there was an error
+                    
                     if ($profile_image && file_exists($upload_path)) {
                         unlink($upload_path);
                     }
                     
-                    if ($conn->errno == 1062) { // Duplicate entry error
+                    if ($conn->errno == 1062) { 
                         $errorMessage = "An account with this email already exists.";
                     } else {
                         $errorMessage = "An error occurred while creating your account. Please try again later.";

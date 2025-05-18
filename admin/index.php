@@ -209,29 +209,108 @@ include 'dashboard.php';
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script>
         // Mobile menu functionality
+        // Make sure DOM is loaded before initializing charts
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const mobileMenuClose = document.getElementById('mobile-menu-close');
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
-            mobileMenuToggle.addEventListener('click', function() {
-                mobileMenu.classList.remove('-translate-x-full');
-                mobileMenuOverlay.classList.remove('hidden');
-            });
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.remove('-translate-x-full');
+                    mobileMenuOverlay.classList.remove('hidden');
+                });
+            }
 
-            mobileMenuClose.addEventListener('click', function() {
-                mobileMenu.classList.add('-translate-x-full');
-                mobileMenuOverlay.classList.add('hidden');
-            });
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', function() {
+                    mobileMenu.classList.add('-translate-x-full');
+                    mobileMenuOverlay.classList.add('hidden');
+                });
+            }
 
-            mobileMenuOverlay.addEventListener('click', function() {
-                mobileMenu.classList.add('-translate-x-full');
-                mobileMenuOverlay.classList.add('hidden');
-            });
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', function() {
+                    mobileMenu.classList.add('-translate-x-full');
+                    mobileMenuOverlay.classList.add('hidden');
+                });
+            }
+            
+            // Initialize ticket chart
+            initTicketChart();
         });
-
         
+        // Separate function for ticket chart initialization
+        function initTicketChart() {
+            const chartCanvas = document.getElementById('ticketsChart');
+            
+            if (!chartCanvas) {
+                console.error('Chart canvas element not found');
+                return;
+            }
+            
+            fetch('get_ticket_data.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Chart data received:', data);
+                    const ctx = chartCanvas.getContext('2d');
+                    const ticketsChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: data.labels,
+                            datasets: [
+                                {
+                                    label: 'New Tickets',
+                                    data: data.new,
+                                    backgroundColor: 'rgba(0, 160, 233, 0.2)',
+                                    borderColor: 'rgba(0, 160, 233, 1)',
+                                    borderWidth: 2,
+                                    tension: 0.4,
+                                    pointBackgroundColor: 'rgba(0, 160, 233, 1)',
+                                    pointRadius: 4
+                                },
+                                {
+                                    label: 'Resolved Tickets',
+                                    data: data.resolved,
+                                    backgroundColor: 'rgba(0, 166, 81, 0.2)',
+                                    borderColor: 'rgba(0, 166, 81, 1)',
+                                    borderWidth: 2,
+                                    tension: 0.4,
+                                    pointBackgroundColor: 'rgba(0, 166, 81, 1)',
+                                    pointRadius: 4
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { position: 'top' }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: { drawBorder: false }
+                                },
+                                x: {
+                                    grid: { display: false }
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching or processing chart data:', error);
+                });
+        }
+
 
         // Simple 3D globe visualization
         function initGlobe() {
@@ -307,57 +386,7 @@ include 'dashboard.php';
         // Initialize globe when the page is loaded
         window.addEventListener('load', initGlobe);
     </script>
-    <script>
-fetch('get_ticket_data.php')
-    .then(response => response.json())
-    .then(data => {
-        const ctx = document.getElementById('ticketsChart').getContext('2d');
-        const ticketsChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: data.labels,
-                datasets: [
-                    {
-                        label: 'New Tickets',
-                        data: data.new,
-                        backgroundColor: 'rgba(0, 160, 233, 0.2)',
-                        borderColor: 'rgba(0, 160, 233, 1)',
-                        borderWidth: 2,
-                        tension: 0.4,
-                        pointBackgroundColor: 'rgba(0, 160, 233, 1)',
-                        pointRadius: 4
-                    },
-                    {
-                        label: 'Resolved Tickets',
-                        data: data.resolved,
-                        backgroundColor: 'rgba(0, 166, 81, 0.2)',
-                        borderColor: 'rgba(0, 166, 81, 1)',
-                        borderWidth: 2,
-                        tension: 0.4,
-                        pointBackgroundColor: 'rgba(0, 166, 81, 1)',
-                        pointRadius: 4
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'top' }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { drawBorder: false }
-                    },
-                    x: {
-                        grid: { display: false }
-                    }
-                }
-            }
-        });
-    });
-</script>
+
 
 </body>
 

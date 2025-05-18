@@ -2,28 +2,28 @@
 session_start();
 require_once "../../db_setup.php";
 
-// Initialize variables
+
 $ticket_id = isset($_GET['ticket_id']) ? intval($_GET['ticket_id']) : 0;
 $response_message = '';
 $success_message = '';
 $error_message = '';
 
-// Check if user is logged in
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../../index.php");
     exit;
 }
 
-// Store the logged-in user's ID as agent_id
+
 $agent_id = $_SESSION['user_id'];
 
-// Check if ticket_id is valid
+
 if ($ticket_id <= 0) {
     header("Location: tickets.php");
     exit;
 }
 
-// Get ticket information
+
 $ticket_query = "SELECT 
     t.id, 
     t.ticket_number, 
@@ -69,7 +69,7 @@ if ($ticket_result->num_rows === 0) {
 
 $ticket = $ticket_result->fetch_assoc();
 
-// Get previous responses
+
 $responses_query = "SELECT 
     r.id, 
     r.ticket_id, 
@@ -97,26 +97,26 @@ while ($row = $responses_result->fetch_assoc()) {
     $responses[] = $row;
 }
 
-// Process form submission
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response'])) {
     $response_message = trim($_POST['response']);
     $mark_completed = isset($_POST['mark_completed']) ? 1 : 0;
     $decision = isset($_POST['decision']) ? trim($_POST['decision']) : '';
-    // Use the agent_id from the session
+    
     $agent_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL;
 
     if (!empty($response_message)) {
-        // Start transaction
+        
         $conn->begin_transaction();
         
         try {
-            // Insert the response
+            
             $insert_query = "INSERT INTO response_ticket (ticket_id, sender, message, agent_id, created_at) VALUES (?, 'agent', ?, ?, NOW())";
             $stmt = $conn->prepare($insert_query);
             $stmt->bind_param("isi", $ticket_id, $response_message, $agent_id);
             $stmt->execute();
             
-            // Update ticket status if needed
+            
             if ($mark_completed) {
                 $status = 'completed';
                 $update_query = "UPDATE tickets SET status = ?, decision = ?, completed_at = NOW(), updated_at = NOW() WHERE id = ?";
@@ -131,28 +131,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response'])) {
                 $stmt->execute();
             }
             
-            // If notification is enabled, update notification status
+            
             if (($ticket['notify_sms'] == 1 || $ticket['notify_email'] == 1) && $mark_completed) {
                 $notified_query = "UPDATE tickets SET notified = 1 WHERE id = ?";
                 $stmt = $conn->prepare($notified_query);
                 $stmt->bind_param("i", $ticket_id);
                 $stmt->execute();
                 
-                // Here you would typically add code to send SMS or email notifications
-                // This depends on your notification system implementation
+                
+                
             }
             
-            // Commit transaction
+            
             $conn->commit();
             
             $success_message = "Response added successfully!";
             
-            // Reload the page to reflect changes
+            
             header("Location: add_response.php?ticket_id=" . $ticket_id . "&success=1");
             exit;
             
         } catch (Exception $e) {
-            // Rollback transaction on error
+            
             $conn->rollback();
             $error_message = "Error: " . $e->getMessage();
         }
@@ -161,12 +161,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['response'])) {
     }
 }
 
-// Check for success parameter in URL
+
 if (isset($_GET['success']) && $_GET['success'] == 1) {
     $success_message = "Response added successfully!";
 }
 
-// Format the location
+
 $location = implode(', ', array_filter([$ticket['district'], $ticket['sector'], $ticket['cell'], $ticket['village']]));
 ?>
 

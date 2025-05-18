@@ -16,7 +16,7 @@ $offset = ($page - 1) * $limit;
 $searchTerm = '%' . $search . '%';
 $orderBy = $sort === 'oldest' ? 'ASC' : 'DESC';
 
-// Escape inputs for security
+
 $searchTermEscaped = $conn->real_escape_string($searchTerm);
 $agentId = (int)$agentId;
 

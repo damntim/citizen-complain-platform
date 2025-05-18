@@ -2,7 +2,7 @@
 
 ob_start();
 require_once "../../db_setup.php";
-// Start session
+
 
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     echo "<script>

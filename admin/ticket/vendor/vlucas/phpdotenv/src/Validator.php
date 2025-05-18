@@ -11,43 +11,20 @@ use Dotenv\Util\Str;
 
 class Validator
 {
-    /**
-     * The environment repository instance.
-     *
-     * @var \Dotenv\Repository\RepositoryInterface
-     */
+    
     private $repository;
 
-    /**
-     * The variables to validate.
-     *
-     * @var string[]
-     */
+    
     private $variables;
 
-    /**
-     * Create a new validator instance.
-     *
-     * @param \Dotenv\Repository\RepositoryInterface $repository
-     * @param string[]                               $variables
-     *
-     * @throws \Dotenv\Exception\ValidationException
-     *
-     * @return void
-     */
+    
     public function __construct(RepositoryInterface $repository, array $variables)
     {
         $this->repository = $repository;
         $this->variables = $variables;
     }
 
-    /**
-     * Assert that each variable is present.
-     *
-     * @throws \Dotenv\Exception\ValidationException
-     *
-     * @return \Dotenv\Validator
-     */
+    
     public function required()
     {
         return $this->assert(
@@ -58,13 +35,7 @@ class Validator
         );
     }
 
-    /**
-     * Assert that each variable is not empty.
-     *
-     * @throws \Dotenv\Exception\ValidationException
-     *
-     * @return \Dotenv\Validator
-     */
+    
     public function notEmpty()
     {
         return $this->assertNullable(
@@ -75,13 +46,7 @@ class Validator
         );
     }
 
-    /**
-     * Assert that each specified variable is an integer.
-     *
-     * @throws \Dotenv\Exception\ValidationException
-     *
-     * @return \Dotenv\Validator
-     */
+    
     public function isInteger()
     {
         return $this->assertNullable(
@@ -92,13 +57,7 @@ class Validator
         );
     }
 
-    /**
-     * Assert that each specified variable is a boolean.
-     *
-     * @throws \Dotenv\Exception\ValidationException
-     *
-     * @return \Dotenv\Validator
-     */
+    
     public function isBoolean()
     {
         return $this->assertNullable(
@@ -113,15 +72,7 @@ class Validator
         );
     }
 
-    /**
-     * Assert that each variable is amongst the given choices.
-     *
-     * @param string[] $choices
-     *
-     * @throws \Dotenv\Exception\ValidationException
-     *
-     * @return \Dotenv\Validator
-     */
+    
     public function allowedValues(array $choices)
     {
         return $this->assertNullable(
@@ -132,15 +83,7 @@ class Validator
         );
     }
 
-    /**
-     * Assert that each variable matches the given regular expression.
-     *
-     * @param string $regex
-     *
-     * @throws \Dotenv\Exception\ValidationException
-     *
-     * @return \Dotenv\Validator
-     */
+    
     public function allowedRegexValues(string $regex)
     {
         return $this->assertNullable(
@@ -151,16 +94,7 @@ class Validator
         );
     }
 
-    /**
-     * Assert that the callback returns true for each variable.
-     *
-     * @param callable(?string):bool $callback
-     * @param string                 $message
-     *
-     * @throws \Dotenv\Exception\ValidationException
-     *
-     * @return \Dotenv\Validator
-     */
+    
     public function assert(callable $callback, string $message)
     {
         $failing = [];
@@ -181,18 +115,7 @@ class Validator
         return $this;
     }
 
-    /**
-     * Assert that the callback returns true for each variable.
-     *
-     * Skip checking null variable values.
-     *
-     * @param callable(string):bool $callback
-     * @param string                $message
-     *
-     * @throws \Dotenv\Exception\ValidationException
-     *
-     * @return \Dotenv\Validator
-     */
+    
     public function assertNullable(callable $callback, string $message)
     {
         return $this->assert(

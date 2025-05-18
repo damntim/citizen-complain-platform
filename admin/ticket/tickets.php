@@ -2,7 +2,7 @@
 
 ob_start();
 
-// Start session
+
 
 
 
@@ -16,29 +16,29 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['
 }
 
 
-// Include database connection
+
 require_once "../../db_setup.php";
 
-// Get logged in user ID
+
 $user_id = $_SESSION['user_id'];
 
-// Count queries
+
 $new_tickets_query = "SELECT COUNT(*) as count FROM tickets WHERE status = 'new'";
 $my_ongoing_query = "SELECT COUNT(*) as count FROM tickets WHERE status = 'ongoing' AND agent_on = ?";
 $my_completed_query = "SELECT COUNT(*) as count FROM tickets WHERE status = 'completed' AND agent_on = ?";
 
-// Prepare and execute new tickets count
+
 $stmt = $conn->prepare($new_tickets_query);
 $stmt->execute();
 $new_tickets_count = $stmt->get_result()->fetch_assoc()['count'];
 
-// Prepare and execute my ongoing tickets count
+
 $stmt = $conn->prepare($my_ongoing_query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $my_ongoing_count = $stmt->get_result()->fetch_assoc()['count'];
 
-// Prepare and execute my completed tickets count
+
 $stmt = $conn->prepare($my_completed_query);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -291,7 +291,7 @@ $my_completed_count = $stmt->get_result()->fetch_assoc()['count'];
     <select id="institutionFilter" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rwanda-blue focus:border-transparent">
         <option value="">All Institutions</option>
         <?php
-        // Populate institutions from DB
+        
         $instSql = "SELECT id, name FROM institutions ORDER BY name ASC";
         $instResult = $conn->query($instSql);
         while ($inst = $instResult->fetch_assoc()) {
@@ -303,10 +303,10 @@ $my_completed_count = $stmt->get_result()->fetch_assoc()['count'];
 
                         <div class="overflow-x-auto">
                         <?php
-// Connect to database using mysqli
+
 require_once "../../db_setup.php";
 
-// Run the query
+
 $sql = "
     SELECT t.*, 
            s.name_en, s.name_rw, s.name_fr, 

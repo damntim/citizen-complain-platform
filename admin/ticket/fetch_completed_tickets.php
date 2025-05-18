@@ -17,7 +17,7 @@ $offset = ($page - 1) * $limit;
 $searchTerm = '%' . $conn->real_escape_string($search) . '%';
 $orderBy = "DESC";
 
-// Base WHERE clause
+
 $where = "
     t.status = 'completed'
     AND t.agent_on = $agentId
@@ -33,14 +33,14 @@ $where = "
     )
 ";
 
-// Apply date filter
+
 if ($monthFilter === 'current') {
     $where .= " AND MONTH(t.completed_at) = MONTH(CURRENT_DATE()) AND YEAR(t.completed_at) = YEAR(CURRENT_DATE())";
 } elseif ($monthFilter === 'last') {
     $where .= " AND MONTH(t.completed_at) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH) AND YEAR(t.completed_at) = YEAR(CURRENT_DATE() - INTERVAL 1 MONTH)";
 }
 
-// Main query
+
 $query = "
     SELECT 
         t.*, 
@@ -62,7 +62,7 @@ $query = "
 
 $result = $conn->query($query);
 
-// Count query for pagination
+
 $countQuery = "SELECT COUNT(*) as total FROM tickets t 
     LEFT JOIN services s ON t.service = s.id
     JOIN admins a ON t.agent_on = a.id

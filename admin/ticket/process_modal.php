@@ -2,7 +2,7 @@
 
 session_start();
 
-// Check if ticket ID is provided
+
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     echo json_encode(['error' => 'Ticket ID is required']);
     exit;
@@ -12,7 +12,7 @@ $ticketId = intval($_GET['id']);
 
 require_once "../../db_setup.php";
 
-// Get ticket details
+
 $ticketQuery = "SELECT * FROM tickets WHERE id = ?";
 $stmt = $conn->prepare($ticketQuery);
 $stmt->bind_param("i", $ticketId);
@@ -27,7 +27,7 @@ if ($ticketResult->num_rows === 0) {
 $ticket = $ticketResult->fetch_assoc();
 $stmt->close();
 
-// Get institution name
+
 $institutionName = "";
 if (!empty($ticket['institution'])) {
     $institutionQuery = "SELECT name FROM institutions WHERE id = ?";
@@ -44,11 +44,11 @@ if (!empty($ticket['institution'])) {
     $institutionName = $ticket['institution_text'];
 }
 
-// Get service name based on language
+
 $serviceName = "";
 if (!empty($ticket['service'])) {
     $language = $ticket['language'] ?? 'en';
-    $serviceField = 'name_en'; // Default to English
+    $serviceField = 'name_en'; 
     
     if ($language == 'rw') {
         $serviceField = 'name_rw';
@@ -70,15 +70,15 @@ if (!empty($ticket['service'])) {
     $serviceName = $ticket['service_text'];
 }
 
-// Format dates
+
 $createdDate = !empty($ticket['created_at']) ? date('M d, Y h:i A', strtotime($ticket['created_at'])) : 'N/A';
 $updatedDate = !empty($ticket['updated_at']) ? date('M d, Y h:i A', strtotime($ticket['updated_at'])) : 'N/A';
 $completedDate = !empty($ticket['completed_at']) ? date('M d, Y h:i A', strtotime($ticket['completed_at'])) : 'N/A';
 
-// Close database connection
+
 $conn->close();
 
-// Prepare status class for badge
+
 $statusClass = 'bg-gray-500';
 switch (strtolower($ticket['status'])) {
     case 'open':
@@ -98,7 +98,7 @@ switch (strtolower($ticket['status'])) {
         break;
 }
 
-// Notification details
+
 $notifications = [];
 if ($ticket['notify_sms'] == 1) {
     $notifications[] = 'SMS';

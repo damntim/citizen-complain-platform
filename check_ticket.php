@@ -1,5 +1,5 @@
 <?php
-// Start the session if not already started
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -141,6 +141,47 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle satisfaction buttons
         const satisfiedBtn = document.getElementById('satisfied-btn');
         const notSatisfiedBtn = document.getElementById('not-satisfied-btn');
+        
+        // Add event listeners for ticket items
+        document.querySelectorAll(".ticket-item").forEach(item => {
+            item.addEventListener("click", function() {
+                const ticketId = this.getAttribute("data-ticket-id");
+                
+                // Show loading
+                document.getElementById("ticket-loading").classList.remove("hidden");
+                document.getElementById("ticket-results").classList.add("hidden");
+                
+                // Fetch ticket details
+                fetch("fetch_ticket_detail.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: "ticket_id=" + encodeURIComponent(ticketId)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("ticket-loading").classList.add("hidden");
+                    
+                    if (data.error) {
+                        document.getElementById("ticket-error").classList.remove("hidden");
+                        document.getElementById("ticket-error").querySelector("p").textContent = data.error;
+                    } else {
+                        document.getElementById("ticket-results").classList.remove("hidden");
+                        document.getElementById("ticket-results").innerHTML = data.html;
+                        
+                        // Re-initialize response interface for the new content
+                        initializeResponseInterface();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("ticket-loading").classList.add("hidden");
+                    document.getElementById("ticket-error").classList.remove("hidden");
+                    document.getElementById("ticket-error").querySelector("p").textContent = "An error occurred while fetching the ticket details.";
+                });
+            });
+        });
         
         if (satisfiedBtn) {
             satisfiedBtn.addEventListener('click', function() {

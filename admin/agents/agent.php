@@ -1,13 +1,13 @@
 <?php
 ob_start();
 require_once "../../db_setup.php";
-require_once "../ticket/vendor/autoload.php"; // For PHPMailer
+require_once "../ticket/vendor/autoload.php"; 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
 
-// Check if user is logged in and is an admin
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     echo "<script>
         alert('You must log in first as an administrator.');
@@ -18,7 +18,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['
 
 
 
-// Function to send email notification
+
 function sendEmailNotification($email, $fullName, $passCode) {
     $mail = new PHPMailer(true);
 
@@ -72,16 +72,16 @@ function sendEmailNotification($email, $fullName, $passCode) {
     }
 }
 
-// Handle form submission for new agent
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'new_agent') {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error_message = "Invalid email format";
     } else {
-        $passCode = bin2hex(random_bytes(4)); // 8-char code
+        $passCode = bin2hex(random_bytes(4)); 
 
-        // Prepare and bind
+        
         $stmt = $conn->prepare("INSERT INTO new_account_request (email, pass_code, agent_id) VALUES (?, ?, ?)");
         $stmt->bind_param("ssi", $email, $passCode, $_SESSION['user_id']);
 
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
     }
 }
 
-// Get all admins
+
 $admins = [];
 $result = $conn->query("SELECT `id`, `fullname`, `email`, `phone`, `status`, `created_at`, `updated_at` FROM `admins` ORDER BY created_at DESC");
 
@@ -115,7 +115,7 @@ if ($result && $result->num_rows > 0) {
 
 $conn->close();
 
-// Page title
+
 $pageTitle = "Agent Management";
 ?>
 

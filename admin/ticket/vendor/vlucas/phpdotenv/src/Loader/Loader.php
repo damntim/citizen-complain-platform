@@ -10,17 +10,7 @@ use Dotenv\Repository\RepositoryInterface;
 
 final class Loader implements LoaderInterface
 {
-    /**
-     * Load the given entries into the repository.
-     *
-     * We'll substitute any nested variables, and send each variable to the
-     * repository, with the effect of actually mutating the environment.
-     *
-     * @param \Dotenv\Repository\RepositoryInterface $repository
-     * @param \Dotenv\Parser\Entry[]                 $entries
-     *
-     * @return array<string,string|null>
-     */
+    
     public function load(RepositoryInterface $repository, array $entries)
     {
         return \array_reduce($entries, static function (array $vars, Entry $entry) use ($repository) {

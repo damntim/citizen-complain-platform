@@ -9,27 +9,13 @@ use Dotenv\Util\Str;
 
 final class Lines
 {
-    /**
-     * This class is a singleton.
-     *
-     * @codeCoverageIgnore
-     *
-     * @return void
-     */
+    
     private function __construct()
     {
-        //
+        
     }
 
-    /**
-     * Process the array of lines of environment variables.
-     *
-     * This will produce an array of raw entries, one per variable.
-     *
-     * @param string[] $lines
-     *
-     * @return string[]
-     */
+    
     public static function process(array $lines)
     {
         $output = [];
@@ -47,20 +33,12 @@ final class Lines
         return $output;
     }
 
-    /**
-     * Used to make all multiline variable process.
-     *
-     * @param bool     $multiline
-     * @param string   $line
-     * @param string[] $buffer
-     *
-     * @return array{bool,string,string[]}
-     */
+    
     private static function multilineProcess(bool $multiline, string $line, array $buffer)
     {
         $startsOnCurrentLine = $multiline ? false : self::looksLikeMultilineStart($line);
 
-        // check if $line can be multiline variable
+        
         if ($startsOnCurrentLine) {
             $multiline = true;
         }
@@ -78,13 +56,7 @@ final class Lines
         return [$multiline, $line, $buffer];
     }
 
-    /**
-     * Determine if the given line can be the start of a multiline variable.
-     *
-     * @param string $line
-     *
-     * @return bool
-     */
+    
     private static function looksLikeMultilineStart(string $line)
     {
         return Str::pos($line, '="')->map(static function () use ($line) {
@@ -92,14 +64,7 @@ final class Lines
         })->getOrElse(false);
     }
 
-    /**
-     * Determine if the given line can be the start of a multiline variable.
-     *
-     * @param string $line
-     * @param bool   $started
-     *
-     * @return bool
-     */
+    
     private static function looksLikeMultilineStop(string $line, bool $started)
     {
         if ($line === '"') {
@@ -111,13 +76,7 @@ final class Lines
         })->success()->getOrElse(false);
     }
 
-    /**
-     * Determine if the line in the file is a comment or whitespace.
-     *
-     * @param string $line
-     *
-     * @return bool
-     */
+    
     private static function isCommentOrWhitespace(string $line)
     {
         $line = \trim($line);

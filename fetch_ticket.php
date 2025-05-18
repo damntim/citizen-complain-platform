@@ -1,14 +1,14 @@
 <?php
-// Start the session if not already started
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_once "db_setup.php";
 
-// Get the identifier from the POST request
+
 $identifier = $_POST['identifier'] ?? '';
 
-// Prepare the response array
+
 $response = [];
 
 if (empty($identifier)) {
@@ -17,12 +17,12 @@ if (empty($identifier)) {
     exit;
 }
 
-// Determine if the identifier is a ticket number or phone number
+
 $isTicketNumber = (strpos($identifier, 'TKT-') === 0);
 
-// Prepare the query based on the identifier type
+
 if ($isTicketNumber) {
-    // Search by ticket number
+    
     $query = "SELECT t.*, 
               i.name AS institution_name,
               CASE 
@@ -37,7 +37,7 @@ if ($isTicketNumber) {
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $identifier);
 } else {
-    // Search by phone number
+    
     $query = "SELECT t.*, 
               i.name AS institution_name,
               CASE 
@@ -53,7 +53,7 @@ if ($isTicketNumber) {
     $stmt->bind_param("s", $identifier);
 }
 
-// Execute the query
+
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -63,21 +63,21 @@ if ($result->num_rows === 0) {
     exit;
 }
 
-// If searching by phone, we might have multiple tickets
+
 $tickets = [];
 while ($row = $result->fetch_assoc()) {
     $tickets[] = $row;
 }
 
-// Generate HTML for the results
+
 $html = '';
 
 if (count($tickets) === 1) {
-    // Single ticket found, show detailed view
+    
     $ticket = $tickets[0];
     $html .= generateTicketDetailView($ticket, $conn);
 } else {
-    // Multiple tickets found, show list view
+    
     $html .= '<h4 class="text-lg font-medium mb-4">Found ' . count($tickets) . ' tickets:</h4>';
     $html .= '<div class="space-y-4">';
     
@@ -95,7 +95,8 @@ if (count($tickets) === 1) {
     
     $html .= '</div>';
     
-    // Add JavaScript to handle clicking on a ticket
+    
+    // Fix the issue with ticket item click event listeners
     $html .= '<script>
         document.querySelectorAll(".ticket-item").forEach(item => {
             item.addEventListener("click", function() {
@@ -125,7 +126,9 @@ if (count($tickets) === 1) {
                         document.getElementById("ticket-results").innerHTML = data.html;
                         
                         // Initialize response interface
-                        initializeResponseInterface();
+                        if (typeof initializeResponseInterface === "function") {
+                            initializeResponseInterface();
+                        }
                     }
                 })
                 .catch(error => {
@@ -142,11 +145,11 @@ if (count($tickets) === 1) {
 $response['html'] = $html;
 echo json_encode($response);
 
-// Function to generate detailed view for a single ticket
+
 function generateTicketDetailView($ticket, $conn) {
     $html = '<div class="bg-white rounded-lg shadow-sm p-6">';
     
-    // Ticket header
+    
     $html .= '<div class="border-b pb-4 mb-4">';
     $html .= '<div class="flex justify-between items-center">';
     $html .= '<h3 class="text-xl font-bold">' . $ticket['ticket_number'] . '</h3>';
@@ -155,7 +158,7 @@ function generateTicketDetailView($ticket, $conn) {
     $html .= '<p class="text-gray-600 mt-1">' . date('F j, Y', strtotime($ticket['created_at'])) . '</p>';
     $html .= '</div>';
     
-    // Ticket details
+    
     $html .= '<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">';
     $html .= '<div>';
     $html .= '<h4 class="font-medium text-gray-700">Institution</h4>';
@@ -178,17 +181,17 @@ function generateTicketDetailView($ticket, $conn) {
     $html .= '</div>';
     $html .= '</div>';
     
-    // Ticket description
+    
     $html .= '<div class="mb-6">';
     $html .= '<h4 class="font-medium text-gray-700 mb-2">Description</h4>';
     $html .= '<div class="bg-gray-50 p-4 rounded-lg">' . nl2br(htmlspecialchars($ticket['description'])) . '</div>';
     $html .= '</div>';
     
-    // Chat/Response section
+    
     $html .= '<div class="border-t pt-4">';
     $html .= '<h4 class="font-medium text-gray-700 mb-4">Conversation History</h4>';
     
-    // Fetch responses for this ticket
+    
     $responseQuery = "SELECT r.*, a.fullname AS agent_name 
                      FROM response_ticket r
                      LEFT JOIN admins a ON r.agent_id = a.id
@@ -207,14 +210,14 @@ function generateTicketDetailView($ticket, $conn) {
             $lastResponse = $response;
             
             if ($response['sender'] === 'agent') {
-                // Agent message (left-aligned)
+                
                 $html .= '<div class="bg-gray-100 p-3 rounded-lg mb-2 self-start max-w-3/4">';
                 $html .= '<div class="font-medium text-sm">' . ($response['agent_name'] ?? 'Agent') . '</div>';
                 $html .= '<p class="text-sm">' . nl2br(htmlspecialchars($response['message'])) . '</p>';
                 $html .= '<p class="text-xs text-gray-500">' . date('M j, Y g:i a', strtotime($response['created_at'])) . '</p>';
                 $html .= '</div>';
             } else {
-                // Citizen message (right-aligned)
+                
                 $html .= '<div class="bg-blue-100 p-3 rounded-lg mb-2 self-end max-w-3/4">';
                 $html .= '<p class="text-sm">' . nl2br(htmlspecialchars($response['message'])) . '</p>';
                 $html .= '<p class="text-xs text-gray-500 text-right">' . date('M j, Y g:i a', strtotime($response['created_at'])) . '</p>';
@@ -224,7 +227,7 @@ function generateTicketDetailView($ticket, $conn) {
         
         $html .= '</div>';
         
-        // If the ticket is still ongoing and the last message is from an agent, show satisfaction options
+        
         if ($ticket['status'] === 'completed' && $lastResponse && $lastResponse['sender'] === 'agent') {
             $html .= '<div id="satisfaction-options" class="bg-gray-50 p-4 rounded-lg mb-4">';
             $html .= '<p class="mb-3">Are you satisfied with the response to your issue?</p>';
@@ -234,12 +237,12 @@ function generateTicketDetailView($ticket, $conn) {
             $html .= '</div>';
             $html .= '</div>';
             
-            // Satisfied message (initially hidden)
+            
             $html .= '<div id="satisfied-message" class="bg-green-100 p-4 rounded-lg mb-4 hidden">';
             $html .= '<p class="text-green-700">We\'re happy to hear that your problem is solved! Feel free to contact us anytime if you need further assistance.</p>';
             $html .= '</div>';
             
-            // Reopen chat form (initially hidden)
+            
             $html .= '<div id="reopen-chat" class="hidden">';
             $html .= '<form id="send-message-form" data-ticket-id="' . $ticket['id'] . '">';
             $html .= '<div class="mb-3">';
@@ -264,14 +267,14 @@ function generateTicketDetailView($ticket, $conn) {
         $html .= '<p class="text-gray-500 italic">No responses yet. Please check back later.</p>';
     }
     
-    $html .= '</div>'; // End of chat section
+    $html .= '</div>'; 
     
-    $html .= '</div>'; // End of ticket detail container
+    $html .= '</div>'; 
     
     return $html;
 }
 
-// Function to get CSS class based on ticket status
+
 function getStatusClass($status) {
     switch ($status) {
         case 'pending':

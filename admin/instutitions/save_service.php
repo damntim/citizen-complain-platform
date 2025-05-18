@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name_en = $_POST['name_en'];
     $name_fr = $_POST['name_fr'];
 
-    // Prepare and execute the insert statement
+    
     $stmt = $conn->prepare("INSERT INTO services (institution_id, name_rw, name_en, name_fr) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("isss", $institution_id, $name_rw, $name_en, $name_fr);
 

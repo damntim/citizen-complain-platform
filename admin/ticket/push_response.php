@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
-// Check if ticket ID is provided
+
 if (!isset($_POST['ticket_id']) || empty($_POST['ticket_id'])) {
     echo json_encode(['success' => false, 'message' => 'Ticket ID is required']);
     exit;
@@ -15,7 +15,7 @@ if (!isset($_POST['ticket_id']) || empty($_POST['ticket_id'])) {
 
 $ticketId = intval($_POST['ticket_id']);
 
-// Get ticket details
+
 $ticketQuery = "SELECT * FROM tickets WHERE id = ?";
 $stmt = $conn->prepare($ticketQuery);
 $stmt->bind_param("i", $ticketId);
@@ -30,7 +30,7 @@ if ($ticketResult->num_rows === 0) {
 $ticket = $ticketResult->fetch_assoc();
 $stmt->close();
 
-// Prepare notification messages based on language
+
 $messages = [
     'en' => [
     'subject' => 'Your Ticket #' . $ticket['ticket_number'] . ' Has Been Answered',
@@ -46,16 +46,16 @@ $messages = [
 ]
 ];
 
-// Default to English if language not specified
+
 $languageMapping = [
     'kinyarwanda' => 'rw',
     'english' => 'en',
     'french' => 'fr',
-    // Add more mappings as needed
+    
 ];
 
-// Map database language to code language
-$codeLanguage = 'en'; // Default to English
+
+$codeLanguage = 'en'; 
 if (isset($ticket['language'])) {
     if (array_key_exists(strtolower($ticket['language']), $languageMapping)) {
         $codeLanguage = $languageMapping[strtolower($ticket['language'])];
@@ -67,7 +67,7 @@ if (isset($ticket['language'])) {
 $notificationsSent = [];
 $errors = [];
 
-// Send email notification if enabled
+
 if ($ticket['notify_email'] == 1 && !empty($ticket['email'])) {
     $emailSent = sendEmailNotification($ticket, $messages[$codeLanguage]);
     if ($emailSent) {
@@ -77,7 +77,7 @@ if ($ticket['notify_email'] == 1 && !empty($ticket['email'])) {
     }
 }
 
-// Send SMS notification if enabled and confirmed
+
 if ($ticket['notify_sms'] == 1 && !empty($ticket['phone']) && isset($_POST['confirm_sms']) && $_POST['confirm_sms'] == 1) {
     $smsSent = sendSMSNotification($ticket, $messages[$codeLanguage]);
     if ($smsSent) {
@@ -87,9 +87,9 @@ if ($ticket['notify_sms'] == 1 && !empty($ticket['phone']) && isset($_POST['conf
     }
 }
 
-// Update ticket status to "In Progress" if not already
+
 if ($ticket['status'] == 'new') {
-    // Get the current logged-in user ID from session
+    
     $agentId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     
     $updateQuery = "UPDATE tickets SET status = 'completed', updated_at = NOW(), 
@@ -99,7 +99,7 @@ if ($ticket['status'] == 'new') {
     $stmt->execute();
     $stmt->close();
     
-    // Record notification details in database
+    
     $notificationQuery = "INSERT INTO ticket_notifications 
                      (ticket_id, ticket_number, full_name, language, email_sent, sms_sent, 
                       agent_id, created_at) 
@@ -111,7 +111,7 @@ if ($ticket['status'] == 'new') {
                      $ticketId, 
                      $ticket['ticket_number'], 
                      $ticket['full_name'], 
-                     $ticket['language'], // Store the original language from database
+                     $ticket['language'], 
                      $emailSent, 
                      $smsSent, 
                      $agentId);
@@ -119,10 +119,10 @@ if ($ticket['status'] == 'new') {
     $stmt->close();
 }
 
-// Close database connection
+
 $conn->close();
 
-// Return response
+
 if (!empty($notificationsSent)) {
     echo json_encode([
         'success' => true, 
@@ -137,18 +137,12 @@ if (!empty($notificationsSent)) {
     ]);
 }
 
-/**
- * Send email notification
- * 
- * @param array $ticket Ticket details
- * @param array $message Message content
- * @return bool Success status
- */
+
 function sendEmailNotification($ticket, $message) {
     $mail = new PHPMailer(true);
     
     try {
-        // Server settings
+        
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
@@ -157,7 +151,7 @@ function sendEmailNotification($ticket, $message) {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         
-        // Improve deliverability with these settings
+        
         $mail->SMTPOptions = array(
             'ssl' => array(
                 'verify_peer' => false,
@@ -166,15 +160,15 @@ function sendEmailNotification($ticket, $message) {
             )
         );
         
-        // Recipients
+        
         $mail->setFrom('ykdann53@gmail.com', 'Citizen Engagement Portal');
         $mail->addAddress($ticket['email'], $ticket['full_name']);
         
-        // Content
+        
         $mail->isHTML(true);
         $mail->Subject = $message['subject'];
         
-        // Create HTML version of the message
+        
         $htmlMessage = nl2br(htmlspecialchars($message['body']));
         
         $mail->Body = "
@@ -197,31 +191,25 @@ function sendEmailNotification($ticket, $message) {
     }
 }
 
-/**
- * Send SMS notification
- * 
- * @param array $ticket Ticket details
- * @param array $message Message content
- * @return bool Success status
- */
+
 function sendSMSNotification($ticket, $message) {
     try {
-        // Check if message is valid
+        
         if (!is_array($message) || !isset($message['body'])) {
             return false;
         }
         
-        // Pushbullet API credentials - replace with your actual credentials
+        
         $apiKey = 'o.3M270774dHnTkOqF71kCHcoh4l1EPkB9';
         $deviceId = 'ujBxBb7gN88sjwHDEIYWFU';
         
         $sms = new PushbulletSMS($apiKey, $deviceId);
         
-        // Create a shorter message for SMS
-        $smsText = "Ticket #" . $ticket['ticket_number'] . ": " . 
-                  substr($message['body'], 0, 500); // Limit to 160 characters for SMS
         
-        // Send the SMS
+        $smsText = "Ticket #" . $ticket['ticket_number'] . ": " . 
+                  substr($message['body'], 0, 500); 
+        
+        
         $result = $sms->sendSMS($ticket['phone'], $smsText);
         return true;
     } catch (Exception $e) {

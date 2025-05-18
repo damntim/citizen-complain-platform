@@ -1,22 +1,22 @@
 
 <?php
-// Start the session if not already started
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Check for success or error messages
+
 $successMessage = '';
 $errorMessage = '';
 
 if (isset($_SESSION['register_success'])) {
     $successMessage = $_SESSION['register_success'];
-    unset($_SESSION['register_success']); // Clear the message after displaying
+    unset($_SESSION['register_success']); 
 }
 
 if (isset($_SESSION['register_error'])) {
     $errorMessage = $_SESSION['register_error'];
-    unset($_SESSION['register_error']); // Clear the message after displaying
+    unset($_SESSION['register_error']); 
 }
 ?>
 
@@ -27,16 +27,16 @@ if (isset($_SESSION['register_error'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citizen Engagement System - Rwanda</title>
-    <!-- Tailwind CSS -->
-    <!-- Tailwind CSS CDN -->
+    
+    
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-    <!-- Font Awesome Icons (latest, one source only) -->
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    <!-- Font Awesome for icons -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Google Fonts -->
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         /* Custom styles based on Rwandan flag colors */
@@ -134,34 +134,34 @@ if (isset($_SESSION['register_error'])) {
 </head>
 
 <body class="bg-gray-50">
-    <!-- Header Section -->
+    
     <header class="relative overflow-hidden">
-        <!-- SVG Wave Background -->
+        
         <div class="absolute top-0 left-0 w-full h-full z-0 opacity-20">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" class="w-full h-full">
                 <path fill="#20603d" fill-opacity="0.5" d="M0,160L48,138.7C96,117,192,75,288,69.3C384,64,480,96,576,128C672,160,768,192,864,186.7C960,181,1056,139,1152,138.7C1248,139,1344,181,1392,202.7L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
             </svg>
         </div>
 
-        <!-- Main Navigation Bar -->
+        
         <nav class="relative z-10 bg-white shadow-md">
             <div class="container mx-auto px-4">
                 <div class="flex justify-between items-center py-4">
-                    <!-- Logo and Title -->
+                    
                     <div class="flex items-center space-x-2 md:space-x-3">
-                        <!-- Rwandan-inspired SVG logo - smaller on mobile -->
+                        
                         <div class="relative w-8 h-8 md:w-12 md:h-12">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
-                                <!-- Blue background -->
+                                
                                 <rect x="0" y="0" width="100" height="33.33" fill="#00a0d1" />
-                                <!-- Yellow stripe -->
+                                
                                 <rect x="0" y="33.33" width="100" height="33.33" fill="#fad201" />
-                                <!-- Green background -->
+                                
                                 <rect x="0" y="66.66" width="100" height="33.33" fill="#20603d" />
-                                <!-- Sun symbol -->
+                                
                                 <circle cx="70" cy="33.33" r="15" fill="#fad201" class="floating" />
                             </svg>
-                            <!-- Animated sun rays -->
+                            
                             <svg viewBox="0 0 100 100" class="sun-rays">
                                 <path d="M50,0 L54,32 L50,28 L46,32 Z M50,100 L54,68 L50,72 L46,68 Z M0,50 L32,46 L28,50 L32,54 Z M100,50 L68,46 L72,50 L68,54 Z M14.64,14.64 L39.9,38.1 L34.14,38.1 L34.14,43.86 Z M85.36,85.36 L60.1,61.9 L65.86,61.9 L65.86,56.14 Z M14.64,85.36 L38.1,60.1 L38.1,65.86 L43.86,65.86 Z M85.36,14.64 L61.9,39.9 L61.9,34.14 L56.14,34.14 Z" fill="#fad201" />
                             </svg>
@@ -174,7 +174,7 @@ if (isset($_SESSION['register_error'])) {
                         </div>
                     </div>
 
-                    <!-- Main Navigation -->
+                    
                     <div class="hidden md:flex items-center space-x-6">
                         <a href="#home" class="text-sm text-gray-700 hover:text-rwandan-green transition duration-300 flex items-center whitespace-nowrap px-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -202,10 +202,10 @@ if (isset($_SESSION['register_error'])) {
                         </a>
                     </div>
 
-                    <!-- Right-side Actions -->
+                    
                     <div class="flex items-center space-x-4">
 
-                        <!-- Submit Complaint Button - Highlighted -->
+                        
                         <button class="bg-rwandan-blue text-white px-3 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300 flex items-center space-x-1 whitespace-nowrap open-ticket-modal">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
@@ -213,7 +213,7 @@ if (isset($_SESSION['register_error'])) {
                             <span data-translate="submit_complaint">Ohereza Ikibazo</span>
                         </button>
 
-                        <!-- Track Status Button -->
+                        
                         <button id="track-status-btn" class="bg-rwandan-yellow text-white px-3 py-2 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300 hidden md:flex items-center space-x-1 whitespace-nowrap">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
@@ -230,7 +230,7 @@ if (isset($_SESSION['register_error'])) {
 
                     </div>
 
-                    <!-- Mobile Menu Button -->
+                    
                     <div class="md:hidden flex items-center">
                         <button class="mobile-menu-button text-gray-700 hover:text-rwandan-green">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -241,7 +241,7 @@ if (isset($_SESSION['register_error'])) {
                 </div>
             </div>
 
-            <!-- Mobile Menu -->
+            
             <div class="mobile-menu hidden md:hidden bg-white border-t border-gray-200">
                 <div class="container mx-auto px-4 py-2">
                     <a href="#home" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded flex items-center">
@@ -284,7 +284,7 @@ if (isset($_SESSION['register_error'])) {
             </div>
         </nav>
 
-        <!-- CSS to place at the end of your stylesheet -->
+        
         <style>
             /* Define brand colors */
             .text-rwandan-blue {
@@ -358,7 +358,7 @@ if (isset($_SESSION['register_error'])) {
             }
         </style>
 
-<!-- Success and Error Messages -->
+
 <?php if (!empty($successMessage)): ?>
 <div id="success-message" class="fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50 shadow-md">
     <div class="flex items-center">
@@ -390,11 +390,11 @@ if (isset($_SESSION['register_error'])) {
     </button>
 </div>
 <?php endif; ?>
-        <!-- Hero Section -->
+        
         <div class="header-gradient pt-16 pb-32 relative z-0">
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row items-center justify-between">
-                    <!-- Hero Text -->
+                    
                     <div class="md:w-1/2 text-white mb-12 md:mb-0">
                         <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
                             <span data-translate="hero_title">Ijwi Ryawe ni Ingirakamaro</span>
@@ -415,20 +415,20 @@ if (isset($_SESSION['register_error'])) {
 
                     </div>
 
-                    <!-- Hero 3D Illustration -->
+                    
                     <div class="md:w-1/2 flex justify-center">
                         <div class="relative w-full max-w-md">
-                            <!-- 3D-inspired SVG illustration -->
+                            
                             <svg viewBox="0 0 500 400" class="w-full h-auto">
-                                <!-- Background elements -->
+                                
                                 <circle cx="250" cy="200" r="150" fill="#ffffff" opacity="0.1" />
                                 <circle cx="250" cy="200" r="120" fill="#ffffff" opacity="0.15" />
 
-                                <!-- Device frame -->
+                                
                                 <rect x="150" y="100" width="200" height="300" rx="20" fill="#ffffff" />
                                 <rect x="160" y="120" width="180" height="240" rx="5" fill="#f0f0f0" />
 
-                                <!-- Screen content -->
+                                
                                 <rect x="170" y="140" width="160" height="30" rx="5" fill="#e0e0e0" />
                                 <rect x="170" y="180" width="160" height="60" rx="5" fill="#00a0d1" opacity="0.7" />
                                 <rect x="170" y="250" width="70" height="20" rx="5" fill="#fad201" />
@@ -436,18 +436,18 @@ if (isset($_SESSION['register_error'])) {
                                 <rect x="170" y="280" width="160" height="40" rx="5" fill="#e0e0e0" />
                                 <rect x="170" y="330" width="160" height="20" rx="5" fill="#e0e0e0" />
 
-                                <!-- Animated elements -->
+                                
                                 <circle cx="190" cy="200" r="5" fill="#ffffff" class="floating" />
                                 <circle cx="210" cy="210" r="7" fill="#ffffff" class="floating" />
                                 <circle cx="230" cy="195" r="6" fill="#ffffff" class="floating" />
 
-                                <!-- Decorative elements -->
+                                
                                 <path d="M370,150 C400,180 400,250 370,280" stroke="#fad201" stroke-width="5" fill="none" />
                                 <path d="M390,170 C420,200 420,230 390,260" stroke="#00a0d1" stroke-width="5" fill="none" />
                                 <path d="M130,150 C100,180 100,250 130,280" stroke="#20603d" stroke-width="5" fill="none" />
                                 <path d="M110,170 C80,200 80,230 110,260" stroke="#fad201" stroke-width="5" fill="none" />
 
-                                <!-- Sun symbol -->
+                                
                                 <circle cx="250" cy="70" r="25" fill="#fad201" />
                                 <circle cx="250" cy="70" r="20" fill="#ffffff" opacity="0.3" />
                             </svg>
@@ -456,7 +456,7 @@ if (isset($_SESSION['register_error'])) {
                 </div>
             </div>
 
-            <!-- Wave SVG at bottom -->
+            
             <div class="absolute bottom-0 left-0 w-full">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full">
                     <path fill="#ffffff" fill-opacity="1" d="M0,128L48,133.3C96,139,192,149,288,144C384,139,480,117,576,128C672,139,768,181,864,170.7C960,160,1056,96,1152,80C1248,64,1344,96,1392,112L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
@@ -465,7 +465,7 @@ if (isset($_SESSION['register_error'])) {
         </div>
     </header>
 
-    <!-- Fixed Language Selector at bottom right -->
+    
     <div class="fixed bottom-4 right-4 z-50">
         <div class="relative">
             <button id="language-selector-btn" class="flex items-center space-x-2 bg-white text-gray-700 hover:text-rwandan-blue transition duration-300 px-4 py-2 rounded-full shadow-lg">
@@ -483,13 +483,13 @@ if (isset($_SESSION['register_error'])) {
     <?php
     include "main.php";
     ?>
-    <!-- Include the ticket modal -->
+    
     <?php include 'ticket_modal.php'; ?>
 
     <?php include 'login_and_reg.php'; ?>
-    <!-- At the end of the file, before the closing </body> tag -->
+    
 <?php include 'check_ticket.php'; ?>
-<!-- JavaScript files -->
+
 <script src="js/modal.js"></script>
 <script src="js/login_modal.js"></script>
     <script>

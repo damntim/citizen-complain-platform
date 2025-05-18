@@ -64,9 +64,9 @@
                             <span data-translate="track_status_desc">
                                 Kurikirana ikibazo cyawe hakoreshejwe nomero y'irangamuntu maze umenye aho kigeze mu gihe icyo aricyo cyose.
                             </span>
-                        </p>
+                        </p> 
                         <div class="text-center">
-                            <button class="bg-rwandan-blue text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition duration-300">
+                            <button class="bg-rwandan-blue text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition duration-300 open-check-ticket-modal">
                                 <span data-translate="track_now">Kurikirana Ubu</span>
                             </button>
                         </div>
@@ -91,7 +91,7 @@
                             </span>
                         </p>
                         <div class="text-center">
-                            <button class="bg-rwandan-yellow text-gray-800 px-6 py-2 rounded-full font-medium hover:shadow-lg transition duration-300">
+                            <button class="bg-rwandan-yellow text-gray-800 px-6 py-2 rounded-full font-medium hover:shadow-lg transition duration-300 open-check-ticket-modal">
                                 <span data-translate="view_responses">Reba Ibisubizo</span>
                             </button>
                         </div>
