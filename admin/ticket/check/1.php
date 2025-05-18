@@ -208,7 +208,7 @@ $device_status = checkDeviceStatus($api_key, $device_id);
                         <textarea id="message" name="message" required
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             rows="4"
-                            placeholder="This is a test message from the Admin."><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : 'This is a test message from the school SMS system.'; ?></textarea>
+                            placeholder="This is a test message from the Admin."><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : 'This is a test message from the  SMS system.'; ?></textarea>
                     </div>
                     
                     <div class="flex items-center justify-between">
