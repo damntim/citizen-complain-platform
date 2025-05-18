@@ -91,11 +91,11 @@ Core Features:
  🛠️ Tech Stack
 
 - Frontend: HTML5, CSS3, JavaScript
-- Backend: PHP (OOP with PDO)
+- Backend: PHP 
 - Database: MySQL
-- Notifications: SMS Gateway API & Email (e.g., SMTP)
+- Notifications: Pushbullet SMS Gateway API & Email (SMTP)
 - Languages: Multilingual support using translation files
-- Deployment: Web-based (can be hosted on shared or cloud server)
+- Deployment: Web-based 
 
 
 
