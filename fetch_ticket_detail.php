@@ -188,7 +188,7 @@ $html .= '</div>';
 
 $response['html'] = $html;
 
-// Add a flag to indicate this is a ticket detail response
+
 $response['isTicketDetail'] = true;
 
 echo json_encode($response);

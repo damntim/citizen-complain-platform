@@ -302,7 +302,7 @@ $location = implode(', ', array_filter([$ticket['district'], $ticket['sector'], 
         <?php endif; ?>
     </div>
     
-    <!-- Success Modal -->
+    
     <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-lg p-8 max-w-md mx-4">
             <div class="text-center">

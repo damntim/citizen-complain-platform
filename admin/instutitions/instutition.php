@@ -27,12 +27,12 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['
 
 <body class="bg-gray-100">
     <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
+        
         <?php include 'sidebar.php'; ?>
 
-        <!-- Main Content -->
+        
         <div class="flex-1 overflow-auto p-6">
-            <!-- Cards -->
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div class="bg-blue-600 text-white p-6 rounded-lg shadow-lg">
                     <h3 class="text-lg font-semibold">Total Institutions</h3>
@@ -54,7 +54,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['
                 </div>
             </div>
 
-            <!-- Tabs -->
+            
             <div class="bg-white rounded-lg shadow-lg">
                 <div class="border-b border-gray-200">
                     <nav class="-mb-px flex">
@@ -63,7 +63,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['
                     </nav>
                 </div>
 
-                <!-- Institutions Tab -->
+                
                 <div id="institutions" class="tab-content p-6">
                     <div class="flex justify-between items-center mb-4">
                         <input type="text" id="inst-search" class="w-full md:w-1/3 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search by name...">
@@ -98,7 +98,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['
                     </div>
                 </div>
 
-                <!-- Services Tab -->
+                
                 <div id="services" class="tab-content p-6 hidden">
                     <div class="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
                         <input type="text" id="serv-search" class="w-full md:w-1/3 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search by name...">
@@ -160,7 +160,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['
         </div>
     </div>
 
-    <!-- Institution Modal -->
+    
     <div id="inst-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
         <div class="bg-white p-6 rounded-lg w-full max-w-md">
             <h2 class="text-lg font-semibold mb-4">Add Institution</h2>
@@ -177,7 +177,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || $_SESSION['
         </div>
     </div>
 
-    <!-- Service Modal -->
+    
     <div id="serv-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
         <div class="bg-white p-6 rounded-lg w-full max-w-md">
             <h2 class="text-lg font-semibold mb-4">Add Service</h2>

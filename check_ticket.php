@@ -6,13 +6,13 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once "db_setup.php";
 ?>
 
-<!-- Ticket Tracking Modal -->
+
 <div id="check-ticket-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
     <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
         <div class="flex flex-col items-center">
             <h3 class="text-lg font-medium text-gray-900 mb-4" data-translate="track_ticket">Track Your Ticket</h3>
             
-            <!-- Search Form -->
+            
             <div class="w-full mb-6">
                 <form id="ticket-search-form" class="flex flex-col space-y-4">
                     <div class="flex flex-col">
@@ -26,12 +26,12 @@ require_once "db_setup.php";
                 </form>
             </div>
             
-            <!-- Results Area (initially hidden) -->
+            
             <div id="ticket-results" class="w-full hidden">
-                <!-- Ticket information will be loaded here -->
+                
             </div>
             
-            <!-- Loading Indicator -->
+            
             <div id="ticket-loading" class="hidden">
                 <svg class="animate-spin h-8 w-8 text-rwandan-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -40,12 +40,12 @@ require_once "db_setup.php";
                 <p class="mt-2 text-gray-600" data-translate="searching">Searching...</p>
             </div>
             
-            <!-- Error Message -->
+            
             <div id="ticket-error" class="hidden w-full p-4 bg-red-100 text-red-700 rounded-lg">
                 <p data-translate="no_ticket_found">No ticket found with the provided information.</p>
             </div>
             
-            <!-- Close Button -->
+            
             <div class="text-right w-full mt-4">
                 <button id="close-check-ticket-modal" class="text-gray-500 hover:text-gray-700">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,7 +57,7 @@ require_once "db_setup.php";
     </div>
 </div>
 
-<!-- JavaScript for the modal functionality -->
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Get modal elements

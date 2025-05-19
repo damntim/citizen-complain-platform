@@ -127,15 +127,15 @@ $pageTitle = "Agent Management";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?> - Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
+    
     <link rel="stylesheet" href="../../assets/css/admin.css">
-    <!-- DataTables CSS -->
+    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-    <!-- Bootstrap CSS -->
+    
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .wave-container {
@@ -231,11 +231,11 @@ $pageTitle = "Agent Management";
 
 <body class="bg-gray-100">
     <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
+        
         <?php include 'sidebar.php'; ?>
 
        
-            <!-- Main content area -->
+            
             <div class="flex-1 overflow-auto p-6">
                 <div class="row mb-4">
                     <div class="col">
@@ -262,7 +262,7 @@ $pageTitle = "Agent Management";
                     </div>
                 <?php endif; ?>
 
-                <!-- Agents Table -->
+                
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Agents List</h6>
@@ -308,7 +308,7 @@ $pageTitle = "Agent Management";
         
     </div>
 
-    <!-- Add Agent Modal -->
+    
     <div class="modal fade" id="addAgentModal" tabindex="-1" aria-labelledby="addAgentModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -334,11 +334,11 @@ $pageTitle = "Agent Management";
         </div>
     </div>
 
-    <!-- Bootstrap Bundle with Popper -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery -->
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- DataTables JS -->
+    
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     

@@ -117,12 +117,12 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
     <title>Rwanda Citizen Engagement - Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-    <!-- Font Awesome Icons (latest, one source only) -->
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    <!-- Font Awesome for icons -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Google Fonts -->
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -307,7 +307,7 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
 
 <div class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50">
     <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-full overflow-y-auto">
-        <!-- Modal Header -->
+        
         <div class="bg-gray-100 px-6 py-4 border-b border-gray-200 rounded-t-lg flex justify-between items-center sticky top-0">
             <h2 class="text-xl font-bold text-gray-800">
                 Ticket #<?php echo htmlspecialchars($ticket['ticket_number']); ?>
@@ -324,9 +324,9 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
             </div>
         </div>
 
-        <!-- Modal Content -->
+        
         <div class="p-6">
-            <!-- Steps Indicator -->
+            
             <div class="mb-10">
     <div class="flex items-center justify-between">
         <div class="flex flex-col items-center">
@@ -342,7 +342,7 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
 </div>
 
 
-            <!-- Personal Information -->
+            
             <div class="bg-gray-50 rounded-lg p-6 mb-6 shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Personal Information</h3>
                 
@@ -375,7 +375,7 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
                 </div>
             </div>
 
-            <!-- Location Information -->
+            
             <div class="bg-gray-50 rounded-lg p-6 mb-6 shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Location</h3>
                 
@@ -405,7 +405,7 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
                 </div>
             </div>
 
-            <!-- Service Information -->
+            
             <div class="bg-gray-50 rounded-lg p-6 mb-6 shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Service Information</h3>
                 
@@ -429,7 +429,7 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
                 </div>
             </div>
 
-            <!-- Problem Details -->
+            
             <div class="bg-gray-50 rounded-lg p-6 mb-6 shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Problem Details</h3>
                 
@@ -446,7 +446,7 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
                 </div>
             </div>
 
-            <!-- Ticket Timeline -->
+            
             <div class="bg-gray-50 rounded-lg p-6 mb-6 shadow-sm">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Ticket Timeline</h3>
                 
@@ -481,7 +481,7 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
                 </div>
             </div>
 
-            <!-- Action Buttons -->
+            
             <div class="flex justify-between mt-8">
                 <button type="button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-6 rounded-md transition" onclick="closeModal()">
                     Close
@@ -496,17 +496,17 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
     </div>
 </div>
 
-<!-- Notification Modal -->
+
 <div id="notificationModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
-        <!-- Modal Header -->
+        
         <div class="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 rounded-t-lg">
             <h2 class="text-xl font-bold text-white">
                 Notification Preferences
             </h2>
         </div>
 
-        <!-- Modal Content -->
+        
         <div class="p-6">
             <div class="mb-6">
                 <p class="text-gray-700 mb-4">This ticket will be processed with the following notification methods:</p>
@@ -564,12 +564,12 @@ $notificationString = !empty($notifications) ? implode(', ', $notifications) : '
                 <button type="button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded-md transition" onclick="closeNotificationModal()">
                     Cancel
                 </button>
-                <!-- Replace the existing Send Notifications button (around line 567-569) with this code -->
+                
                 <button type="button" id="sendNotificationsBtn" class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md transition">
                     <i class="fas fa-paper-plane mr-2"></i>Send Notifications
                 </button>
                 
-                <!-- Add this script at the end of the file, before the closing </div> -->
+                
                 <script>
                 document.getElementById('sendNotificationsBtn').addEventListener('click', function() {
                     <?php if ($ticket['notify_sms'] == 1): ?>

@@ -1,7 +1,7 @@
-<!-- Login and Registration Modal -->
+
 <div id="login-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex justify-center items-center hidden">
     <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 overflow-hidden">
-        <!-- Modal Header -->
+        
         <div class="bg-rwandan-green text-white px-6 py-4 flex justify-between items-center">
             <h3 class="text-xl font-bold" id="modal-title" data-translate="login">Injira</h3>
             <button class="close-login-modal text-white hover:text-gray-200 transition duration-150">
@@ -10,7 +10,7 @@
                 </svg>
             </button>
         </div>
-        <!-- Success and Error Messages -->
+        
 <?php if (!empty($successMessage)): ?>
 <div id="success-message" class="fixed top-4 right-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50 shadow-md">
     <div class="flex items-center">
@@ -43,9 +43,9 @@
 </div>
 <?php endif; ?>
 
-        <!-- Modal Content -->
+        
         <div class="px-6 py-4">
-            <!-- Login Form -->
+            
             <div id="login-form">
                 <form id="login-form-element" action="handle_login.php" method="post">
                     <div class="mb-4">
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <!-- Forgot Password Form -->
+            
             <div id="forgot-password-form" class="hidden">
                 <form action="handle_forgot_password.php" method="post">
                     <div class="mb-4">
@@ -109,7 +109,7 @@
                 </form>
             </div>
 
-            <!-- Registration Form -->
+            
             <div id="register-form" class="hidden">
                 <form action="handle_registration.php" method="post" enctype="multipart/form-data">
                     <div class="mb-4">
@@ -168,7 +168,7 @@
             </div>
         </div>
 
-        <!-- Modal Footer -->
+        
         <div class="bg-gray-100 px-6 py-3">
             <p class="text-xs text-gray-600 text-center" data-translate="secure_login">
                 Iyi serivisi ikoreshwa n'abayobozi gusa. Amakuru yose arindwa.

@@ -1,19 +1,19 @@
 <aside class="hidden md:flex flex-col w-64 bg-white shadow-lg">
-    <!-- Logo and Title -->
+    
     <div class="flex items-center space-x-2 md:space-x-3">
-        <!-- Rwandan-inspired SVG logo - smaller on mobile -->
+        
         <div class="relative w-8 h-8 md:w-12 md:h-12">
             <svg viewBox="0 0 100 100" class="w-full h-full">
-                <!-- Blue background -->
+                
                 <rect x="0" y="0" width="100" height="33.33" fill="#00a0d1" />
-                <!-- Yellow stripe -->
+                
                 <rect x="0" y="33.33" width="100" height="33.33" fill="#fad201" />
-                <!-- Green background -->
+                
                 <rect x="0" y="66.66" width="100" height="33.33" fill="#20603d" />
-                <!-- Sun symbol -->
+                
                 <circle cx="70" cy="33.33" r="15" fill="#fad201" class="floating" />
             </svg>
-            <!-- Animated sun rays -->
+            
             <svg viewBox="0 0 100 100" class="sun-rays">
                 <path d="M50,0 L54,32 L50,28 L46,32 Z M50,100 L54,68 L50,72 L46,68 Z M0,50 L32,46 L28,50 L32,54 Z M100,50 L68,46 L72,50 L68,54 Z M14.64,14.64 L39.9,38.1 L34.14,38.1 L34.14,43.86 Z M85.36,85.36 L60.1,61.9 L65.86,61.9 L65.86,56.14 Z M14.64,85.36 L38.1,60.1 L38.1,65.86 L43.86,65.86 Z M85.36,14.64 L61.9,39.9 L61.9,34.14 L56.14,34.14 Z" fill="#fad201" />
             </svg>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <br><br>
-    <!-- CSS to place at the end of your stylesheet -->
+    
     <style>
         /* Define brand colors */
         .text-rwandan-blue {
@@ -141,34 +141,34 @@
     </div>
 </aside>
 
-<!-- Mobile sidebar toggle -->
+
 <div class="md:hidden fixed bottom-4 right-4 z-50">
     <button id="mobile-menu-toggle" class="p-3 rounded-full bg-rwanda-blue text-white shadow-lg">
         <i class="fas fa-bars"></i>
     </button>
 </div>
 
-<!-- Mobile sidebar overlay -->
+
 <div id="mobile-menu-overlay" class="fixed inset-0 z-40 bg-black bg-opacity-50 hidden"></div>
 
-<!-- Mobile sidebar menu -->
+
 <div id="mobile-menu" class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300">
-    <!-- Same content as desktop sidebar -->
-    <!-- Logo and Title -->
+    
+    
     <div class="flex items-center space-x-2 md:space-x-3">
-        <!-- Rwandan-inspired SVG logo - smaller on mobile -->
+        
         <div class="relative w-8 h-8 md:w-12 md:h-12">
             <svg viewBox="0 0 100 100" class="w-full h-full">
-                <!-- Blue background -->
+                
                 <rect x="0" y="0" width="100" height="33.33" fill="#00a0d1" />
-                <!-- Yellow stripe -->
+                
                 <rect x="0" y="33.33" width="100" height="33.33" fill="#fad201" />
-                <!-- Green background -->
+                
                 <rect x="0" y="66.66" width="100" height="33.33" fill="#20603d" />
-                <!-- Sun symbol -->
+                
                 <circle cx="70" cy="33.33" r="15" fill="#fad201" class="floating" />
             </svg>
-            <!-- Animated sun rays -->
+            
             <svg viewBox="0 0 100 100" class="sun-rays">
                 <path d="M50,0 L54,32 L50,28 L46,32 Z M50,100 L54,68 L50,72 L46,68 Z M0,50 L32,46 L28,50 L32,54 Z M100,50 L68,46 L72,50 L68,54 Z M14.64,14.64 L39.9,38.1 L34.14,38.1 L34.14,43.86 Z M85.36,85.36 L60.1,61.9 L65.86,61.9 L65.86,56.14 Z M14.64,85.36 L38.1,60.1 L38.1,65.86 L43.86,65.86 Z M85.36,14.64 L61.9,39.9 L61.9,34.14 L56.14,34.14 Z" fill="#fad201" />
             </svg>

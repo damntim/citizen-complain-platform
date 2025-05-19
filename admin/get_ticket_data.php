@@ -1,7 +1,7 @@
 <?php
 require_once "../db_setup.php";
 
-// Set headers for proper JSON response
+
 header('Content-Type: application/json');
 
 try {
@@ -15,7 +15,7 @@ try {
         'resolved' => array_fill(0, 7, 0)
     ];
 
-    // Check if connection is valid
+    
     if (!$conn) {
         throw new Exception("Database connection failed");
     }
@@ -36,7 +36,7 @@ try {
 
     while ($row = $result->fetch_assoc()) {
         $index = $row['dow'] - 2; 
-        if ($index < 0) $index = 6; // Sunday is 1 in MySQL's DAYOFWEEK
+        if ($index < 0) $index = 6; 
         if ($index > 6) continue;
 
         if ($row['status'] === 'new') {
@@ -48,7 +48,7 @@ try {
 
     echo json_encode($data);
 } catch (Exception $e) {
-    // Return error as JSON
+    
     echo json_encode([
         'error' => true,
         'message' => $e->getMessage(),

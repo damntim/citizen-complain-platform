@@ -1,17 +1,17 @@
 
 
 
-<!-- Ticket Submission Modal -->
+
 <div id="ticket-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <!-- Background overlay -->
+        
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
 
-        <!-- Modal panel -->
+        
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
-            <!-- Modal header -->
+            
             <div class="bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-3 sm:px-6 flex justify-between items-center">
                 <h3 class="text-lg leading-6 font-medium text-white">
                     <span data-translate="submit_ticket_title">Gutanga Ikibazo</span>
@@ -23,7 +23,7 @@
                 </button>
             </div>
 
-            <!-- Progress bar -->
+            
             <div class="px-4 pt-5 sm:px-6">
                 <div class="w-full bg-gray-200 rounded-full h-2.5">
                     <div class="bg-rwandan-green h-2.5 rounded-full progress-bar" style="width: 20%"></div>
@@ -37,9 +37,9 @@
                 </div>
             </div>
 
-            <!-- Form content -->
+            
             <form id="ticket-form">
-                <!-- Step 1: Personal Information -->
+                
                 <div class="step-content" id="step-1">
                     <div class="px-4 py-5 sm:p-6">
                         <h4 class="text-lg font-medium text-gray-900 mb-4">
@@ -118,7 +118,7 @@
                     </div>
                 </div>
 
-                <!-- Step 2: Institution Details -->
+                
                 <div class="step-content hidden" id="step-2">
                     <div class="px-4 py-5 sm:p-6">
                         <h4 class="text-lg font-medium text-gray-900 mb-4">
@@ -131,7 +131,7 @@
                                 </label>
                                 <select id="institution" name="institution" required class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-rwandan-green focus:border-rwandan-green sm:text-sm">
                                     <option value="" data-translate="choose_institution">Hitamo Urwego</option>
-                                    <!-- Options will be populated dynamically -->
+                                    
                                 </select>
                             </div>
 
@@ -176,7 +176,7 @@
                     </div>
                 </div>
 
-                <!-- Step 3: Problem Statement -->
+                
                 <div class="step-content hidden" id="step-3">
                     <div class="px-4 py-5 sm:p-6">
                         <h4 class="text-lg font-medium text-gray-900 mb-4">
@@ -226,7 +226,7 @@
                     </div>
                 </div>
 
-                <!-- Step 4: Notification Preferences -->
+                
                 <div class="step-content hidden" id="step-4">
                     <div class="px-4 py-5 sm:p-6">
                         <h4 class="text-lg font-medium text-gray-900 mb-4">
@@ -258,7 +258,7 @@
                             </div>
                         </div>
 
-                        <!-- Language preference section -->
+                        
                         <div class="mt-8">
                             <h5 class="text-md font-medium text-gray-900 mb-3">
                                 <span data-translate="language_preference">Ururimi Wifuza</span> *
@@ -314,7 +314,7 @@
                     </div>
                 </div>
 
-                <!-- Step 5: Review and Submit -->
+                
                 <div class="step-content hidden" id="step-5">
                     <div class="px-4 py-5 sm:p-6">
                         <h4 class="text-lg font-medium text-gray-900 mb-4">
@@ -385,7 +385,7 @@
                     </div>
                 </div>
 
-                <!-- Modal footer with navigation buttons -->
+                
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <button type="button" id="next-btn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-rwandan-green text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rwandan-green sm:ml-3 sm:w-auto sm:text-sm">
                         <span data-translate="next">Komeza</span>
@@ -402,17 +402,17 @@
     </div>
 </div>
 
-<!-- Success Modal -->
+
 <div id="success-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
     <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <!-- Background overlay -->
+        
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
 
-        <!-- Modal panel -->
+        
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-            <!-- Modal header -->
+            
             <div class="bg-rwandan-green px-4 py-3 sm:px-6 flex justify-between items-center">
                 <h3 class="text-lg leading-6 font-medium text-white">
                     <span data-translate="success_title">Ikibazo Cyawe Cyoherejwe!</span>
@@ -424,7 +424,7 @@
                 </button>
             </div>
 
-            <!-- Success content -->
+            
             <div class="px-4 py-5 sm:p-6 text-center">
                 <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
                     <svg class="h-10 w-10 text-rwandan-green" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -456,7 +456,7 @@
         </div>
     </div>
 </div>
-<!-- JavaScript for the modal functionality -->
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // DOM Elements

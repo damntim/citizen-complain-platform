@@ -168,7 +168,7 @@ if (isset($_SESSION['register_error'])) {
                         </div>
                         <div>
                             <h1 class="text-xl md:text-2xl font-bold">
-                                <span class="text-rwandan-blue">Mu</span><span class="text-rwandan-yellow">ra</span><span class="text-rwandan-green">kaza</span>
+                                <span class="text-rwandan-blue">Mu</span><span class="text-rwandan-yellow">ra</span><span class="text-rwandan-green">kaza</span><span class="text-rwandan-blue">neza</span>
                             </h1>
                             <p class="text-gray-600 text-xs md:text-sm">Citizen Engagement Portal</p>
                         </div>

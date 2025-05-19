@@ -96,7 +96,7 @@ if (count($tickets) === 1) {
     $html .= '</div>';
     
     
-    // Fix the issue with ticket item click event listeners
+    
     $html .= '<script>
         document.querySelectorAll(".ticket-item").forEach(item => {
             item.addEventListener("click", function() {

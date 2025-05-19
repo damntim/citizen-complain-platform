@@ -1,8 +1,8 @@
 
-<!-- Main Service Sections -->
+
     <section class="py-16 bg-gray-50" id="services">
         <div class="container mx-auto px-4">
-            <!-- Section Header -->
+            
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4">
                     <span data-translate="services_title">Serivisi Zacu</span>
@@ -13,7 +13,7 @@
                     </span>
                 </p>
                 
-                <!-- Decorative Element -->
+                
                 <div class="flex justify-center mt-6">
                     <div class="w-20 h-1 bg-rwandan-blue rounded-full"></div>
                     <div class="w-20 h-1 bg-rwandan-yellow rounded-full mx-2"></div>
@@ -21,9 +21,9 @@
                 </div>
             </div>
             
-            <!-- Service Cards -->
+            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Submit Complaint Service -->
+                
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale group">
                     <div class="h-3 bg-rwandan-green w-full"></div>
                     <div class="p-6">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 
-                <!-- Track Status Service -->
+                
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale group">
                     <div class="h-3 bg-rwandan-blue w-full"></div>
                     <div class="p-6">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 
-                <!-- Get Response Service -->
+                
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale group">
                     <div class="h-3 bg-rwandan-yellow w-full"></div>
                     <div class="p-6">
@@ -99,18 +99,18 @@
                 </div>
             </div>
             
-            <!-- Feature Highlights -->
+            
             <div class="mt-24">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <!-- Feature Text -->
+                    
                     <div>
                         <h3 class="text-2xl font-bold mb-6">
                             <span data-translate="how_it_works">Uko Sisitemu Ikora</span>
                         </h3>
                         
-                        <!-- Feature Steps -->
+                        
                         <div class="space-y-6">
-                            <!-- Step 1 -->
+                            
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 bg-rwandan-green rounded-full w-10 h-10 flex items-center justify-center text-white font-bold">1</div>
                                 <div class="ml-4">
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Step 2 -->
+                            
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 bg-rwandan-blue rounded-full w-10 h-10 flex items-center justify-center text-white font-bold">2</div>
                                 <div class="ml-4">
@@ -140,7 +140,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Step 3 -->
+                            
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 bg-rwandan-yellow rounded-full w-10 h-10 flex items-center justify-center text-gray-800 font-bold">3</div>
                                 <div class="ml-4">
@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Step 4 -->
+                            
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 bg-rwandan-green rounded-full w-10 h-10 flex items-center justify-center text-white font-bold">4</div>
                                 <div class="ml-4">
@@ -172,48 +172,48 @@
                         </div>
                     </div>
                     
-                    <!-- Feature Illustration -->
+                    
                     <div class="relative">
-                        <!-- 3D-inspired SVG illustration -->
+                        
                         <div class="relative max-w-md mx-auto">
-                            <!-- Background decorative elements -->
+                            
                             <div class="absolute top-0 right-0 w-32 h-32 bg-rwandan-blue bg-opacity-10 rounded-full transform translate-x-10 -translate-y-10 z-0"></div>
                             <div class="absolute bottom-0 left-0 w-24 h-24 bg-rwandan-yellow bg-opacity-10 rounded-full transform -translate-x-5 translate-y-5 z-0"></div>
                             
-                            <!-- Main feature illustration -->
+                            
                             <div class="relative z-10 bg-white rounded-xl shadow-xl p-8 transform rotate-3">
-                                <!-- Process Flow SVG -->
+                                
                                 <svg viewBox="0 0 400 300" class="w-full h-auto">
-    <!-- Flow lines -->
+    
     <path d="M80,50 L80,250 L320,250" stroke="#e0e0e0" stroke-width="4" fill="none" stroke-dasharray="8,8" />
 
-    <!-- Step 1 - Submit -->
+    
     <circle cx="80" cy="50" r="30" fill="#20603d" />
     <text x="80" y="55" text-anchor="middle" fill="white" font-size="12" font-weight="bold">1</text>
     <text x="130" y="55" fill="#333333" font-size="14" font-weight="bold" data-translate="send">Gutanga</text>
 
-    <!-- Step 2 - Categorize -->
+    
     <circle cx="80" cy="120" r="25" fill="#00a0d1" />
     <text x="80" y="125" text-anchor="middle" fill="white" font-size="12" font-weight="bold">2</text>
     <text x="130" y="125" fill="#333333" font-size="14" font-weight="bold" data-translate="classfy">Gushyira mu Cyiciro</text>
 
-    <!-- Step 3 - Track -->
+    
     <circle cx="80" cy="190" r="25" fill="#fad201" />
     <text x="80" y="195" text-anchor="middle" fill="#333333" font-size="12" font-weight="bold">3</text>
     <text x="130" y="195" fill="#333333" font-size="14" font-weight="bold" data-translate="check">Gukurikirana</text>
 
-    <!-- Step 4 - Response -->
+    
     <circle cx="320" cy="250" r="30" fill="#20603d" />
     <text x="320" y="255" text-anchor="middle" fill="white" font-size="12" font-weight="bold">4</text>
     <text x="320" y="300" text-anchor="middle" fill="#333333" font-size="14" font-weight="bold" data-translate="answer">Igisubizo</text>
 
-    <!-- Decorative curves -->
+    
     <path d="M120,50 C140,50 140,70 160,70" stroke="#20603d" stroke-width="3" fill="none" />
     <path d="M120,120 C140,120 140,140 160,140" stroke="#00a0d1" stroke-width="3" fill="none" />
     <path d="M120,190 C140,190 140,210 160,210" stroke="#fad201" stroke-width="3" fill="none" />
     <path d="M320,220 C340,220 340,200 360,200" stroke="#20603d" stroke-width="3" fill="none" />
 
-    <!-- Icons for each step -->
+    
     <rect x="160" y="50" width="40" height="40" rx="5" fill="#20603d" fill-opacity="0.1" />
     <text x="180" y="75" text-anchor="middle" fill="#20603d" font-size="18">📝</text>
 
@@ -235,10 +235,10 @@
         </div>
     </section>
     
-    <!-- Key Benefits Section -->
+    
     <section id="about" class="py-16 bg-gradient-to-b from-white to-gray-100">
         <div class="container mx-auto px-4">
-            <!-- Section Header -->
+            
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4">
                     <span data-translate="benefits_title">Inyungu z'Iyi Sisitemu</span>
@@ -249,7 +249,7 @@
                     </span>
                 </p>
                 
-                <!-- Decorative Element -->
+                
                 <div class="flex justify-center mt-6">
                     <div class="w-20 h-1 bg-rwandan-blue rounded-full"></div>
                     <div class="w-20 h-1 bg-rwandan-yellow rounded-full mx-2"></div>
@@ -257,9 +257,9 @@
                 </div>
             </div>
             
-            <!-- Benefits Grid -->
+            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Benefit 1 -->
+                
                 <div class="bg-white rounded-lg shadow-md p-6 hover-scale">
                     <div class="bg-rwandan-green bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rwandan-green" viewBox="0 0 20 20" fill="currentColor">
@@ -276,7 +276,7 @@
                     </p>
                 </div>
                 
-                <!-- Benefit 2 -->
+                
                 <div class="bg-white rounded-lg shadow-md p-6 hover-scale">
                     <div class="bg-rwandan-blue bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rwandan-blue" viewBox="0 0 20 20" fill="currentColor">
@@ -294,7 +294,7 @@
                     </p>
                 </div>
                 
-                <!-- Benefit 3 -->
+                
                 <div class="bg-white rounded-lg shadow-md p-6 hover-scale">
                     <div class="bg-rwandan-yellow bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rwandan-yellow" viewBox="0 0 20 20" fill="currentColor">
@@ -311,7 +311,7 @@
                     </p>
                 </div>
                 
-                <!-- Benefit 4 -->
+                
                 <div class="bg-white rounded-lg shadow-md p-6 hover-scale">
                     <div class="bg-rwandan-green bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rwandan-green" viewBox="0 0 20 20" fill="currentColor">
@@ -328,7 +328,7 @@
                     </p>
                 </div>
                 
-                <!-- Benefit 5 -->
+                
                 <div class="bg-white rounded-lg shadow-md p-6 hover-scale">
                     <div class="bg-rwandan-blue bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rwandan-blue" viewBox="0 0 20 20" fill="currentColor">
@@ -345,7 +345,7 @@
                     </p>
                 </div>
                 
-                <!-- Benefit 6 -->
+                
                 <div class="bg-white rounded-lg shadow-md p-6 hover-scale">
                     <div class="bg-rwandan-yellow bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-rwandan-yellow" viewBox="0 0 20 20" fill="currentColor">

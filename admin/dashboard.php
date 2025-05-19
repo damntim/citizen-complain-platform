@@ -234,14 +234,14 @@ $result5 = $conn->query($sql);
 
 
 <div class="flex h-screen overflow-hidden">
-    <!-- Sidebar -->
+    
     <?php
     include 'sidebar.php'
     ?>
 
-    <!-- Main content -->
+    
     <main class="flex-1 overflow-y-auto overflow-x-hidden bg-gray-100">
-        <!-- Top navigation bar -->
+        
         <header class="bg-white shadow-sm sticky top-0 z-10">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
@@ -265,17 +265,17 @@ $result5 = $conn->query($sql);
             </div>
         </header>
 
-        <!-- Dashboard content -->
+        
         <div class="p-4 sm:p-6 lg:p-8">
-            <!-- Welcome message -->
+            
             <div class="mb-6 fade-in">
                 <h2 class="text-2xl font-bold text-gray-800">Welcome back, <?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'User'; ?></h2>
                 <p class="text-gray-600">Here's what's happening with the Citizen Engagement System today.</p>
             </div>
 
-            <!-- Stats cards -->
+            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                <!-- Active tickets -->
+                
                 <div class="bg-white rounded-lg shadow-sm p-6 wave-container fade-in fade-in-delay-1">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -298,7 +298,7 @@ $result5 = $conn->query($sql);
                 </div>
 
 
-                <!-- Resolved tickets -->
+                
                 <div class="bg-white rounded-lg shadow-sm p-6 wave-container fade-in fade-in-delay-2">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -321,7 +321,7 @@ $result5 = $conn->query($sql);
                 </div>
 
 
-                <!-- Response time -->
+                
                 <div class="bg-white rounded-lg shadow-sm p-6 wave-container fade-in fade-in-delay-3">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -344,7 +344,7 @@ $result5 = $conn->query($sql);
                 </div>
 
 
-                <!-- Satisfaction -->
+                
                 <div class="bg-white rounded-lg shadow-sm p-6 wave-container fade-in fade-in-delay-4">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -368,9 +368,9 @@ $result5 = $conn->query($sql);
 
             </div>
 
-            <!-- Chart and activity -->
+            
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                <!-- Chart -->
+                
                 <div class="bg-white rounded-lg shadow-sm p-6 lg:col-span-2 fade-in">
                     <div class="flex items-center justify-between mb-6">
                         <h3 class="text-lg font-semibold text-gray-800">Ticket Analytics</h3>
@@ -385,7 +385,7 @@ $result5 = $conn->query($sql);
                     </div>
                 </div>
 
-                <!-- Recent activity -->
+                
                 <?php
 
                 $servername = "localhost";
@@ -512,10 +512,10 @@ LIMIT 5
                 ?>
             </div>
 
-            <!-- 3D map visualization and category distribution -->
+            
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
 
-                <!-- Recent tickets -->
+                
                 <div class="bg-white rounded-lg shadow-sm p-6 lg:col-span-2 fade-in">
                     <div class="flex items-center justify-between mb-6">
                         <h3 class="text-lg font-semibold text-gray-800">Recent Tickets</h3>
@@ -571,7 +571,7 @@ LIMIT 5
                     </div>
                 </div>
 
-                <!-- Category distribution -->
+                
                 <div class="bg-white rounded-lg shadow-sm p-6 fade-in">
                     <div class="flex items-center justify-between mb-6">
                         <h3 class="text-lg font-semibold text-gray-800">Institutions</h3>

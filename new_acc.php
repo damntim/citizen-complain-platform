@@ -144,9 +144,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']) && $showFo
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Your Account</title>
-    <!-- Bootstrap CSS -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']) && $showFo
     <div class="container">
         <div class="form-container">
             <div class="logo-container">
-                <!-- Replace with your logo -->
+                
                 <img src="../assets/img/logo.png" alt="Logo" class="logo">
             </div>
             
@@ -279,9 +279,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']) && $showFo
         </div>
     </div>
     
-    <!-- Bootstrap Bundle with Popper -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery -->
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <script>

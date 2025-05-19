@@ -183,7 +183,7 @@ $device_status = checkDeviceStatus($api_key, $device_id);
             <?php endif; ?>
         </div>
 
-        <!-- Test message form -->
+        
         <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
             <div class="p-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Send a Test Message</h2>

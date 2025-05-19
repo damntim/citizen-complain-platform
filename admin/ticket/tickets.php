@@ -51,9 +51,9 @@ $my_completed_count = $stmt->get_result()->fetch_assoc()['count'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticket Management - Citizen Engagement System</title>
-    <!-- Tailwind CSS -->
+    
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .wave-container {
@@ -148,12 +148,12 @@ $my_completed_count = $stmt->get_result()->fetch_assoc()['count'];
 </head>
 <body class="bg-gray-100">
     <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
+        
         <?php include 'sidebar.php'; ?>
 
-        <!-- Main content -->
+        
         <main class="flex-1 overflow-y-auto overflow-x-hidden bg-gray-100">
-            <!-- Top navigation bar -->
+            
             <header class="bg-white shadow-sm sticky top-0 z-10">
                 <div class="mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-between h-16">
@@ -177,17 +177,17 @@ $my_completed_count = $stmt->get_result()->fetch_assoc()['count'];
                 </div>
             </header>
 
-            <!-- Dashboard content -->
+            
             <div class="p-4 sm:p-6 lg:p-8">
-                <!-- Welcome message -->
+                
                 <div class="mb-6 fade-in">
                     <h2 class="text-2xl font-bold text-gray-800">Ticket Dashboard</h2>
                     <p class="text-gray-600">Manage and track all citizen engagement tickets in one place.</p>
                 </div>
 
-                <!-- Stats cards -->
+                
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <!-- New tickets -->
+                    
                     <div class="bg-white rounded-lg shadow-sm p-6 wave-container fade-in fade-in-delay-1">
                         <div class="wave"></div>
                         <div class="wave"></div>
@@ -211,7 +211,7 @@ $my_completed_count = $stmt->get_result()->fetch_assoc()['count'];
                         </div>
                     </div>
 
-                    <!-- My ongoing tickets -->
+                    
                     <div class="bg-white rounded-lg shadow-sm p-6 wave-container fade-in fade-in-delay-2">
                         <div class="wave"></div>
                         <div class="wave"></div>
@@ -235,7 +235,7 @@ $my_completed_count = $stmt->get_result()->fetch_assoc()['count'];
                         </div>
                     </div>
 
-                    <!-- My completed tickets -->
+                    
                     <div class="bg-white rounded-lg shadow-sm p-6 wave-container fade-in fade-in-delay-3">
                         <div class="wave"></div>
                         <div class="wave"></div>
@@ -260,7 +260,7 @@ $my_completed_count = $stmt->get_result()->fetch_assoc()['count'];
                     </div>
                 </div>
 
-                <!-- Tabs navigation -->
+                
                 <div class="bg-white rounded-lg shadow-sm mb-6 fade-in">
                     <div class="border-b border-gray-200">
                         <nav class="flex -mb-px overflow-x-auto">
@@ -277,10 +277,10 @@ $my_completed_count = $stmt->get_result()->fetch_assoc()['count'];
                     </div>
                 </div>
 
-                <!-- Tab content -->
+                
                 <div class="tab-content active" id="content-new">
                     <div class="bg-white rounded-lg shadow-sm p-6 mb-6 fade-in">
-                       <!-- Search and Institution Filter -->
+                       
 <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full md:w-auto">
     <div class="relative">
         <input type="text" id="searchInput" placeholder="Search tickets..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rwanda-blue focus:border-transparent">
@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="flex flex-col md:flex-row items-center justify-between mb-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4 md:mb-0">My Ongoing Tickets</h3>
             <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full md:w-auto">
-                <!-- Search -->
+                
                 <div class="relative w-full md:w-64">
                     <input id="search-ticket" type="text" placeholder="Search tickets..." 
                         class="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rwanda-blue focus:border-transparent">
@@ -443,7 +443,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <i class="fas fa-search"></i>
                     </div>
                 </div>
-                <!-- Sort -->
+                
                 <select id="sort-ticket" class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rwanda-blue focus:border-transparent">
                     <option value="">Sort by Date</option>
                     <option value="newest">Newest First</option>
@@ -452,7 +452,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </div>
 
-        <!-- Table -->
+        
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -475,7 +475,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </table>
         </div>
 
-        <!-- Pagination -->
+        
         <div class="mt-4 flex justify-between items-center">
             <div class="text-sm text-gray-500">
                 Showing <span id="ongoing-tickets-showing">0</span> of <span id="ongoing-tickets-total">0</span> tickets
@@ -521,7 +521,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200" id="completed-tickets-table">
-                                    <!-- Table content will be loaded via AJAX -->
+                                    
                                     <tr>
                                         <td colspan="6" class="px-6 py-4 text-center text-sm text-gray-500">
                                             <i class="fas fa-spinner fa-spin mr-2"></i> Loading tickets...
@@ -564,7 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-                <!-- Ticket details modal -->
+                
                 <div id="ticket-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
                     <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-screen overflow-y-auto">
                         <div class="p-6 border-b border-gray-200">
@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                         <div class="p-6" id="ticket-details-content">
-                            <!-- Ticket details will be loaded here -->
+                            
                         </div>
                         <div class="p-6 border-t border-gray-200 flex justify-end space-x-3">
                             <button onclick="closeModal()" class="px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50">Close</button>
