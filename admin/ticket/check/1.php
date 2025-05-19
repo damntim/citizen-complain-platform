@@ -208,16 +208,14 @@ $device_status = checkDeviceStatus($api_key, $device_id);
                         <textarea id="message" name="message" required
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             rows="4"
-                            placeholder="This is a test message from the Admin."><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : 'This is a test message from the school SMS system.'; ?></textarea>
+                            placeholder="This is a test message from the Admin."><?php echo isset($_POST['message']) ? htmlspecialchars($_POST['message']) : 'This is a test message from the  SMS system.'; ?></textarea>
                     </div>
                     
                     <div class="flex items-center justify-between">
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Send Test Message
                         </button>
-                        <a href="index.php" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                            Back to Dashboard
-                        </a>
+                       
                     </div>
                 </form>
             </div>
@@ -269,9 +267,7 @@ $device_status = checkDeviceStatus($api_key, $device_id);
             <p class="text-gray-600 mb-4">If you're having trouble sending SMS messages or the test message doesn't arrive, please call <strong>0785498054</strong> for immediate starting app.</p>
             
             <div class="flex flex-wrap gap-3">
-                <a href="index.php" class="bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
-                    Back to Dashboard
-                </a>
+               
                 <button id="refreshBtn" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
                     Refresh Status
                 </button>
