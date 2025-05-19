@@ -105,7 +105,7 @@ Core Features:
 - ✉️ Other users (agents/admins) join via invitation only.
 - 🛑 No public sign-up – access is controlled and secure.
 
-link: https://citizen.free.nf/ for demo
+link: https://citizen.free.nf/index.php for demo
 
 📬 Contact
 For technical help or partnership, please contact the project lead:
